@@ -31,7 +31,8 @@
     // --- Configuration ---
     // IMPORTANT: Replace with your actual Stripe publishable key
     const STRIPE_PUBLISHABLE_KEY = 'pk_test_REPLACE_WITH_YOUR_KEY';
-    const API_ENDPOINT = '/api/create-payment-intent';
+    const API_BASE = window.EF_API_BASE || '';
+    const API_ENDPOINT = API_BASE + '/api/create-payment-intent';
 
     // --- State ---
     let stripe = null;

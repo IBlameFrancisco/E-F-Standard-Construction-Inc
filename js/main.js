@@ -6,6 +6,11 @@
 (function () {
     'use strict';
 
+    // --- API Base URL ---
+    // Auto-detect: use relative path if served from the same server,
+    // or override with a full URL for separate frontend/backend hosting.
+    const API_BASE = window.EF_API_BASE || '';
+
     // --- Mobile Menu Toggle ---
     function initMobileMenu() {
         const menuBtn = document.getElementById('nav-menu-btn');
@@ -72,7 +77,7 @@
         const form = document.getElementById('estimate-form');
         if (!form) return;
 
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const formData = new FormData(form);
@@ -107,7 +112,7 @@
                 return;
             }
 
-            // Simulate submission
+            // Submit to API
             const submitBtn = form.querySelector('button[type="submit"]');
             const btnText = submitBtn.querySelector('.btn-text');
             const originalText = btnText.textContent;
@@ -115,13 +120,22 @@
             btnText.textContent = 'Sending...';
             submitBtn.disabled = true;
 
-            // Simulate API call
-            setTimeout(() => {
-                showToast('Estimate request sent successfully! We\'ll contact you within 48 hours.', 'success');
+            try {
+                const res = await fetch(API_BASE + '/api/estimate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (!res.ok) throw new Error(result.error || 'Submission failed.');
+                showToast(result.message || 'Estimate request sent successfully!', 'success');
                 form.reset();
+            } catch (err) {
+                showToast(err.message || 'Something went wrong. Please try again.', 'error');
+            } finally {
                 btnText.textContent = originalText;
                 submitBtn.disabled = false;
-            }, 1500);
+            }
         });
     }
 
@@ -130,7 +144,7 @@
         const form = document.getElementById('contact-form');
         if (!form) return;
 
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const formData = new FormData(form);
@@ -159,7 +173,7 @@
                 return;
             }
 
-            // Simulate submission
+            // Submit to API
             const submitBtn = form.querySelector('button[type="submit"]');
             const btnText = submitBtn.querySelector('.btn-text');
             const originalText = btnText.textContent;
@@ -167,12 +181,22 @@
             btnText.textContent = 'Sending...';
             submitBtn.disabled = true;
 
-            setTimeout(() => {
-                showToast('Message sent! We\'ll get back to you soon.', 'success');
+            try {
+                const res = await fetch(API_BASE + '/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (!res.ok) throw new Error(result.error || 'Submission failed.');
+                showToast(result.message || 'Message sent!', 'success');
                 form.reset();
+            } catch (err) {
+                showToast(err.message || 'Something went wrong. Please try again.', 'error');
+            } finally {
                 btnText.textContent = originalText;
                 submitBtn.disabled = false;
-            }, 1200);
+            }
         });
     }
 
