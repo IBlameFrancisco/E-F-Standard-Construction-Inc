@@ -1,0 +1,337 @@
+/* ============================================
+   E&F Standard Construction Inc.
+   Animations & Keyframes
+   ============================================ */
+
+/* ---------- Keyframe Animations ---------- */
+
+@keyframes preloaderLine {
+    0% { left: -100%; }
+    100% { left: 0%; }
+}
+
+@keyframes scrollBounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(-50%) translateY(12px);
+        opacity: 0.3;
+    }
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes drawLine {
+    from { stroke-dashoffset: 1000; }
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(212, 168, 83, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(212, 168, 83, 0.2);
+    }
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        border-color: var(--color-border);
+    }
+    50% {
+        border-color: rgba(212, 168, 83, 0.3);
+    }
+}
+
+@keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+}
+
+/* ---------- Staggered Card Animations ---------- */
+.project-card {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s var(--ease-out-expo),
+                transform 0.6s var(--ease-out-expo);
+}
+
+.project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-card.visible:nth-child(1) { transition-delay: 0s; }
+.project-card.visible:nth-child(2) { transition-delay: 0.1s; }
+.project-card.visible:nth-child(3) { transition-delay: 0.2s; }
+.project-card.visible:nth-child(4) { transition-delay: 0.3s; }
+.project-card.visible:nth-child(5) { transition-delay: 0.4s; }
+.project-card.visible:nth-child(6) { transition-delay: 0.5s; }
+
+.stat-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--ease-out-expo),
+                transform 0.6s var(--ease-out-expo),
+                border-color var(--transition-base);
+}
+
+.stat-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat-card.visible:nth-child(1) { transition-delay: 0s; }
+.stat-card.visible:nth-child(2) { transition-delay: 0.15s; }
+.stat-card.visible:nth-child(3) { transition-delay: 0.3s; }
+.stat-card.visible:nth-child(4) { transition-delay: 0.45s; }
+
+.safety-metric {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--ease-out-expo),
+                transform 0.6s var(--ease-out-expo),
+                border-color var(--transition-base);
+}
+
+.safety-metric.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.safety-metric.visible:nth-child(1) { transition-delay: 0s; }
+.safety-metric.visible:nth-child(2) { transition-delay: 0.15s; }
+.safety-metric.visible:nth-child(3) { transition-delay: 0.3s; }
+
+/* ---------- Contact & Estimate form animations ---------- */
+.estimate-form,
+.contact-form {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s var(--ease-out-expo);
+}
+
+.estimate-form.visible,
+.contact-form.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Section tag animation ---------- */
+.section-tag {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s var(--ease-out-expo);
+}
+
+.section-tag.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ---------- Safety injuries table animation ---------- */
+.safety-injuries {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s var(--ease-out-expo);
+}
+
+.safety-injuries.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Hero animations ---------- */
+.hero-tag {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s var(--ease-out-expo);
+}
+
+.hero-tag.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-bottom {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s var(--ease-out-expo) 0.6s;
+}
+
+.hero-bottom.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Parallax text effect ---------- */
+.parallax-text {
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+/* ---------- Magnetic button effect ---------- */
+.magnetic-btn {
+    transition: transform 0.3s var(--ease-out-expo);
+}
+
+/* ---------- Image reveal effect ---------- */
+.img-reveal {
+    position: relative;
+    overflow: hidden;
+}
+
+.img-reveal::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-bg);
+    transform-origin: left;
+    transition: transform 0.8s var(--ease-out-expo);
+}
+
+.img-reveal.revealed::after {
+    transform: scaleX(0);
+    transform-origin: right;
+}
+
+/* ---------- Line draw animations ---------- */
+.line-draw {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+.line-draw.visible {
+    animation: drawLine 2s var(--ease-out-expo) forwards;
+}
+
+/* ---------- Payment card special glow ---------- */
+.payment-card {
+    transition: box-shadow var(--transition-slow);
+}
+
+.payment-card:focus-within {
+    box-shadow: var(--shadow-glow);
+}
+
+/* ---------- Input focus animation ---------- */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    transition: border-color var(--transition-fast),
+                box-shadow var(--transition-fast),
+                transform var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    transform: translateY(-1px);
+}
+
+/* ---------- Noise / grain texture overlay ---------- */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px;
+    animation: grain 8s steps(10) infinite;
+}
+
+/* Ensure preloader is above grain */
+.preloader {
+    z-index: 9999;
+}
